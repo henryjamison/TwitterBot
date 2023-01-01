@@ -6,15 +6,10 @@ from selenium.common.exceptions import NoSuchElementException
 import random
 import requests
 import tweepy
-
-
-consumer_key = "Z32jMkb4yVvluHVnEjalfvIEZ"
-consumer_secret = "LKnNjphKPcQhoYAWXVihPadv5h5Z2aftx4mdaogShFzthRaZct"
-access_token = "1609309881470799875-7YtIrpYjh4DlpKbmkCcoWHhOm3TrP5"
-access_token_secret = "z0rR1ZXg7qa4xkJpGj5R5slEF9Fw84M1mtUNd97YBuGHT"
+import config
 
 # Authenticate with Twitter API
-auth = tweepy.OAuth1UserHandler(consumer_key, consumer_secret, access_token, access_token_secret)
+auth = tweepy.OAuth1UserHandler(config.consumer_key, config.consumer_secret, config.access_token, config.access_token_secret)
 api = tweepy.API(auth)
 
 def getImage():
