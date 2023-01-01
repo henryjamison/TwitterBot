@@ -61,8 +61,6 @@ def getImage():
         driver.quit()
 
 def sendTweet(body,filename):
-    # media = api.media_upload(filename)
-    # api.update_status(status=status, media_ids=[media.media_id])
     api.update_status_with_media(body,filename)
     os.remove(filename)
     print("tweeted!")
