@@ -30,4 +30,11 @@ jobs:
             pip install -r requirements.txt
             
         - name: execute py script # run main.py
+          env:
+              consumer_key: ${{ secret.CONSUMER_KEY }}
+              consumer_secret: ${{ secret.CONSUMER_SECRET }}
+              access_token: ${{ secret.ACCESS_TOKEN }}
+              access_token_secret: ${{ secret.ACCESS_TOKEN_SECRET }}
           run: python tweet.py
+              
+              
