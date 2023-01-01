@@ -4,7 +4,7 @@ name: Send Tweet
 on:
   # Triggers the workflow every hour
   schedule:
-    - cron: "5 * * * *"
+    - cron: "6 * * * *"
 
      # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -31,10 +31,10 @@ jobs:
             
         - name: execute py script # run main.py
           env:
-              CONSUMER_KEY: ${{ secret.CONSUMER_KEY }}
-              CONSUMER_SECRET: ${{ secret.CONSUMER_SECRET }}
-              ACCESS_TOKEN: ${{ secret.ACCESS_TOKEN }}
-              ACCESS_TOKEN_SECRET: ${{ secret.ACCESS_TOKEN_SECRET }}
+              CONSUMER_KEY: ${{ secrets.CONSUMER_KEY }}
+              CONSUMER_SECRET: ${{ secrets.CONSUMER_SECRET }}
+              ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+              ACCESS_TOKEN_SECRET: ${{ secrets.ACCESS_TOKEN_SECRET }}
           run: python tweet.py
               
               
