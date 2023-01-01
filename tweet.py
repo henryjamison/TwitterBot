@@ -6,7 +6,6 @@ from selenium.common.exceptions import NoSuchElementException
 import random
 import requests
 import tweepy
-# import config
 
 # Authenticate with Twitter API
 CONSUMER_KEY = os.environ["CONSUMER_KEY"]
@@ -22,6 +21,8 @@ def getImage():
     try:
         options = webdriver.ChromeOptions()
         options.add_argument('--no-sandbox')
+        options.add_argument('--headless')
+        options.add_argument('--disable-dev-shm-usage')
         options.add_experimental_option("detach", True)
         driver = webdriver.Chrome(options=options)
 
