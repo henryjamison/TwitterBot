@@ -31,10 +31,10 @@ jobs:
             
         - name: execute py script # run main.py
           env:
-              consumer_key: secret.CONSUMER_KEY
-              consumer_secret: secret.CONSUMER_SECRET
-              access_token: secret.ACCESS_TOKEN
-              access_token_secret: secret.ACCESS_TOKEN_SECRET
+              CONSUMER_KEY: ${{ secret.CONSUMER_KEY }}
+              CONSUMER_SECRET: ${{ secret.CONSUMER_SECRET }}
+              ACCESS_TOKEN: ${{ secret.ACCESS_TOKEN }}
+              ACCESS_TOKEN_SECRET: ${{ secret.ACCESS_TOKEN_SECRET }}
           run: python tweet.py
               
               
