@@ -1,4 +1,4 @@
 selenium
 requests
 tweepy
-config
+webdriver-manager
