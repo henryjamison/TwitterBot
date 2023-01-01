@@ -2,7 +2,7 @@ import os
 import time
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
-from webdriver_manager.core.utils import ChromeType
+from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoSuchElementException
 import random
@@ -21,13 +21,13 @@ api = tweepy.API(auth)
 def getImage():
     # Start the web driver
     try:
-        chrome_service = webdriver.ChromeService(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install())
+        # chrome_service = webdriver.ChromeService(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install())
         options = webdriver.ChromeOptions()
         options.add_argument('--no-sandbox')
         options.add_argument('--headless')
         options.add_argument('--disable-dev-shm-usage')
         options.add_experimental_option("detach", True)
-        driver = webdriver.Chrome(service=chrome_service, options=options)
+        driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
 
         # Load the webpage
         patent_number = random.randint(1000000, 9999999)
