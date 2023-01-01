@@ -52,8 +52,8 @@ def getImage():
         # Download the image
         response = requests.get(image_url)
 
-        body = title.text + " Owned By: " + owner.text + "\n" + "Patent Number: " + str(patent_number) + "\n" + url
-        # print(body)
+        body = title.text + "\n Owned By: " + owner.text + "\n" + "Patent Number: " + str(patent_number) + "\n" + url
+
         # Check if the request was successful
         if response.status_code == 200:
             # Save the image to a file
