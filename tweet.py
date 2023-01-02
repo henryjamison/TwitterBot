@@ -69,6 +69,7 @@ def getImage():
         driver.quit()
     except NoSuchElementException:
         driver.quit()
+        getImage()
 
 def sendTweet(body,filename):
     api.update_status_with_media(body,filename)
