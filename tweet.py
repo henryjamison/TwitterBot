@@ -69,6 +69,7 @@ def getImage():
         driver.quit()
     except NoSuchElementException:
         driver.quit()
+        print("No picture found, searching again.")
         getImage()
 
 def sendTweet(body,filename):
