@@ -4,7 +4,7 @@ name: Send Tweet
 on:
   # Triggers the workflow every hour
   schedule:
-    - cron: "0 * * * *"
+    - cron: ""
 
 jobs:
   cron:
