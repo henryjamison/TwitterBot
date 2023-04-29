@@ -4,7 +4,8 @@ name: Send Tweet
 on:
   # Triggers the workflow every hour
   schedule:
-    - cron: "0 * * * *"
+  # Quit cron while twitter fixes suspension
+    - cron: ""
 
 jobs:
   cron:
