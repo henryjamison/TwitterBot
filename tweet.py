@@ -74,7 +74,7 @@ def getImage():
 
 def sendTweet(body,filename):
     # Old method was deprecated, trying new media_upload()
-    api.media_upload(body,filename)
+    api.media_upload(filename,body)
     os.remove(filename)
     print("tweeted!")
 
