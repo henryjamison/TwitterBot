@@ -5,7 +5,7 @@ on:
   # Triggers the workflow every hour
   schedule:
   # Quit cron while twitter fixes suspension
-    - cron: ""
+    - cron: "* 0 0 0 0 0"
 
 jobs:
   cron:
