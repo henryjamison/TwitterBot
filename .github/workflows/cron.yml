@@ -2,12 +2,14 @@ name: Send Tweet
 
 # Controls when the workflow will run
 on:
+  push:
+    branches:
+      - master
   # Triggers the workflow every hour
   schedule:
   # Quit cron while twitter fixes suspension
     - cron: "0 * * * *"
     
-
 jobs:
   cron:
     # The type of runner that the job will run on
