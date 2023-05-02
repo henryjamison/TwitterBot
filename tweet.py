@@ -73,7 +73,7 @@ def getImage():
         getImage()
 
 def sendTweet(body,filename):
-    api.update_status_with_media(body,filename)
+    api.media_upload(body,filename)
     os.remove(filename)
     print("tweeted!")
 
