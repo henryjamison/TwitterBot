@@ -76,7 +76,7 @@ def getImage():
 
 def sendTweet(body,filename):
     # api.media_upload(filename=filename)
-    media = api.update_status_with_media(filename=filename)
+    media = api.update_status_with_media(status='media upload' filename=filename)
     client.create_tweet(text=body, media_ids=media)
     os.remove(filename)
     print("tweeted!")
