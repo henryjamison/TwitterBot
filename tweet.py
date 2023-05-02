@@ -16,7 +16,9 @@ ACCESS_TOKEN = os.environ["ACCESS_TOKEN"]
 ACCESS_TOKEN_SECRET = os.environ["ACCESS_TOKEN_SECRET"]
 
 auth = tweepy.OAuth1UserHandler(CONSUMER_KEY, CONSUMER_SECRET, ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
+
 api = tweepy.API(auth)
+client = tweepy.Client(consumer_key=CONSUMER_KEY,consumer_secret=CONSUMER_SECRET,access_token=ACCESS_TOKEN,access_token_secret=ACCESS_TOKEN_SECRET)
 
 def getImage():
     # Start the web driver
@@ -73,7 +75,9 @@ def getImage():
         getImage()
 
 def sendTweet(body,filename):
-    api.update_status_with_media(body,filename)
+    # api.media_upload(filename=filename)
+    media = api.update_status_with_media(filename=filename)
+    client.create_tweet(text=body, media_ids=media)
     os.remove(filename)
     print("tweeted!")
 
