@@ -7,7 +7,7 @@ on:
       - master
   # Triggers the workflow every hour
   schedule:
-  # Quit cron while twitter fixes suspension
+  # Schedule back to normal
     - cron: "0 * * * *"
     
 jobs:
