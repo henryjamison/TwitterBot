@@ -8,7 +8,7 @@ on:
   # Triggers the workflow every hour
   schedule:
   # Schedule back to normal
-    - cron: "0 * * * *"
+    - cron: ""
     
 jobs:
   cron:
