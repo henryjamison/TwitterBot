@@ -14,10 +14,14 @@ CONSUMER_KEY = os.environ["CONSUMER_KEY"]
 CONSUMER_SECRET = os.environ["CONSUMER_SECRET"]
 ACCESS_TOKEN = os.environ["ACCESS_TOKEN"]
 ACCESS_TOKEN_SECRET = os.environ["ACCESS_TOKEN_SECRET"]
+BEARER_TOKEN = os.environ["BEARER_TOKEN"]
 
-auth = tweepy.OAuth1UserHandler(CONSUMER_KEY, CONSUMER_SECRET, ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
+auth_v1 = tweepy.OAuth1UserHandler(CONSUMER_KEY, CONSUMER_SECRET, ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
 
-api = tweepy.API(auth)
+api = tweepy.API(auth_v1)
+
+auth_v2 = tweepy.Client(BEARER_TOKEN, CONSUMER_KEY, CONSUMER_SECRET,ACCESS_TOKEN,ACCESS_TOKEN_SECRET)
+
 # client = tweepy.Client(consumer_key=CONSUMER_KEY,consumer_secret=CONSUMER_SECRET,access_token=ACCESS_TOKEN,access_token_secret=ACCESS_TOKEN_SECRET)
 
 def getImage():
@@ -80,10 +84,13 @@ def getImage():
         getImage()
 
 def sendTweet(body,filename):
-    # api.media_upload(filename=filename)
-    # media = api.update_status_with_media(status='media upload', filename=filename)
+    media = api.media_upload(filename=filename)
+    auth_v2.create_tweet(text=body, media_ids=[media.media_id])
+    # tweet_id = str(tweet_v2.data["id"])
+    # tweet_url = "https://twitter.com/PatentArtBot/status/"+tweet_id
+    posted_tweet = 
     # client.create_tweet(text=body, media_ids=media)
-    api.update_status_with_media(body,filename)
+    # api.update_status_with_media(body,filename)
     os.remove(filename)
     print("tweeted!")
     
