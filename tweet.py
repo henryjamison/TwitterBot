@@ -31,8 +31,7 @@ def getImage():
         options.add_argument('--headless')
         options.add_argument('--disable-dev-shm-usage')
         options.add_experimental_option("detach", True)
-        version = '114.0.5735.90'
-        driver = webdriver.Chrome(service=Service(ChromeDriverManager(version=version).install()), options=options)
+        driver = webdriver.Chrome(service=Service(ChromeDriverManager(version='114.0.5735.90').install()), options=options)
         # driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager(version=version).install()), options=options)
         # driver = webdriver.ChromeService(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install())
 
