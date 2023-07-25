@@ -1,6 +1,8 @@
 import os
 import time
 from selenium import webdriver
+from selenium.webdriver.chrome.service import Service as ChromeService
+from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
@@ -29,7 +31,11 @@ def getImage():
         options.add_argument('--headless')
         options.add_argument('--disable-dev-shm-usage')
         options.add_experimental_option("detach", True)
-        driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
+        version = '114.0.5735.90'
+        driver = webdriver.Chrome(service=Service(ChromeDriverManager(version=version).install()), options=options)
+        # driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager(version=version).install()), options=options)
+        # driver = webdriver.ChromeService(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install())
+
 
         # Load the webpage
         patent_number = random.randint(1000000, 9999999)
