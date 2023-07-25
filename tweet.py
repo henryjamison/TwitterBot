@@ -88,7 +88,6 @@ def sendTweet(body,filename):
     auth_v2.create_tweet(text=body, media_ids=[media.media_id])
     # tweet_id = str(tweet_v2.data["id"])
     # tweet_url = "https://twitter.com/PatentArtBot/status/"+tweet_id
-    posted_tweet = 
     # client.create_tweet(text=body, media_ids=media)
     # api.update_status_with_media(body,filename)
     os.remove(filename)
