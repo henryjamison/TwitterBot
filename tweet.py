@@ -31,7 +31,6 @@ def start():
 
 
 def get_body(soup, num, url):
-    # print(soup)
     title = soup.title.text
     parsed_title = title.split(' - ')[1].strip()
     owner = soup.find('meta',scheme='assignee')['content']
@@ -83,8 +82,10 @@ def get_abstract(soup):
         if len(abstract) < 840:
             return split_abstract(abstract,280)
         else:
+            print('Abstract too long for now')
             return 1
     except(AttributeError):
+           print('Abstract Doesnt exist')
            return 1
 
 def runner():
