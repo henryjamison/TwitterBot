@@ -61,6 +61,32 @@ def download_imgs(img_list):
         index+=1
     return file_list
 
+def split_abstract(abstract, limit=280):
+    tweet_parts = []
+    current_part = ""
+    words = abstract.split()
+    for word in words:
+        if len(current_part) + len(word) + 1 <= limit:
+            current_part += word + " "
+        else:
+            tweet_parts.append(current_part.strip())
+            current_part = word + " "
+
+    if current_part:
+        tweet_parts.append(current_part.strip())
+
+    return tweet_parts
+
+def get_abstract(soup):
+    try:
+        abstract = soup.find('div',class_='abstract').text
+        if len(abstract) < 840:
+            return split_abstract(abstract,280)
+        else:
+            return 1
+    except(AttributeError):
+           return 1
+
 def runner():
     start_info = start()
     patent_number = start_info[0]
@@ -70,12 +96,19 @@ def runner():
     i_list = trim_url_list(meta)
     file_list = download_imgs(i_list)
     body = get_body(soup,patent_number,url)
-    sendTweet(body,file_list)
+    abstract = get_abstract(soup)
+    sendTweet(body,file_list,abstract)
 
-def sendTweet(body,file_list):
+def sendTweet(body,file_list,abstract,):
     media_ids = [api.media_upload(i).media_id_string for i in file_list] 
     print(media_ids)
-    auth_v2.create_tweet(text=body, media_ids=media_ids)
+    tweet = auth_v2.create_tweet(text=body, media_ids=media_ids)
+    tweet_id = tweet.data['id']
+    if abstract != 1:
+        for ab in abstract:
+            reply = auth_v2.create_tweet(in_reply_to_tweet_id=tweet_id,text=ab)
+            reply_id = reply.data['id']
+            tweet_id = reply_id
     for file in file_list:
         os.remove(file)
     print("tweeted!")
