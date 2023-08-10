@@ -116,7 +116,8 @@ def runner():
 
 def sendTweet(body,file_list):
     media_ids = [api.media_upload(i).media_id_string for i in file_list] 
-    auth_v2.create_tweet(text=body, media_ids=[media_ids])
+    print(media_ids)
+    # auth_v2.create_tweet(text=body, media_ids=[media_ids])
     for file in file_list:
         os.remove(file)
     print("tweeted!")
