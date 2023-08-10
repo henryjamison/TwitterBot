@@ -20,47 +20,6 @@ api = tweepy.API(auth_v1)
 
 auth_v2 = tweepy.Client(BEARER_TOKEN, CONSUMER_KEY, CONSUMER_SECRET,ACCESS_TOKEN,ACCESS_TOKEN_SECRET)
 
-# client = tweepy.Client(consumer_key=CONSUMER_KEY,consumer_secret=CONSUMER_SECRET,access_token=ACCESS_TOKEN,access_token_secret=ACCESS_TOKEN_SECRET)
-
-# def getImage():
-#     # Start the web driver
-#     try:
-#         # Load the webpage
-#         patent_number = random.randint(1000000, 9999999)
-#         url = f"https://patents.google.com/patent/US{patent_number}/en?oq={patent_number}"
-
-#         req = requests.get(url)
-#         soup = BeautifulSoup(req.text, features="lxml")
-#         meta = soup.find_all('meta',itemprop='full')
-
-
-#         ## TODO: Add a check to see if meta exists, if not just re run like normal, else grab up to 4 photos and download - named on index.
-#         ##      Update tweet method to grab all ids if media exists Might have to do chunked upload
-#         for img in meta:
-#             print(img['content'])
-    
-#         # response = requests.get(image_url)
-
-#         body = title.text + "\nOwned By: " + owner.text + "\n" + "Patent Number: " + str(patent_number) + "\n" + url
-#         # Check if the request was successful
-#         if req.status_code == 200:
-#             # Save the image to a file
-#             filename = f"{patent_number}.jpg"
-#             with open(filename, "wb") as f:
-#                 f.write(req.content)
-#         sendTweet(body,filename)
-#     except NoSuchElementException:
-#         print("No picture found, searching again.")
-#         getImage()
-
-# def sendTweet(body,filename):
-#     media = api.media_upload(filename=filename)
-#     auth_v2.create_tweet(text=body, media_ids=[media.media_id])
-#     os.remove(filename)
-#     print("tweeted!")
-    
-
-# getImage()
 def start():
     patent_number = random.randint(1000000, 9999999)
     url = f"https://patents.google.com/patent/US{patent_number}/en?oq={patent_number}"
@@ -106,7 +65,6 @@ def runner():
     start_info = start()
     patent_number = start_info[0]
     url = start_info[1]
-    req = start_info[2]
     soup = start_info[3]
     meta = start_info[4]
     i_list = trim_url_list(meta)
