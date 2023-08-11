@@ -36,7 +36,9 @@ def get_body(soup, num, url):
     owner = soup.find('meta',scheme='assignee')['content']
     if (owner == 'Individual'):
         owner = soup.find('meta',scheme='inventor')['content']
-    body = parsed_title + "\nOwned By: " + owner + "\n" + "Patent Number: US" + str(num) + "\n" + url
+        body = parsed_title + "\nInvented By: " + owner + "\n" + "Patent Number: US" + str(num) + "\n" + url
+    else:
+        body = parsed_title + "\nOwned By: " + owner + "\n" + "Patent Number: US" + str(num) + "\n" + url
     return body
     
 
