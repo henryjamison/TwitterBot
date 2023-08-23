@@ -50,6 +50,7 @@ def trim_url_list(meta):
     if img_list == []:
         print("no pics found")
         runner()
+        return
     return img_list[:4]
 
 def download_imgs(img_list):
