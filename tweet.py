@@ -98,7 +98,11 @@ def runner():
     soup = start_info[3]
     meta = start_info[4]
     i_list = trim_url_list(meta)
-    file_list = download_imgs(i_list)
+    try:
+        file_list = download_imgs(i_list)
+    except TypeError:
+        print("Nonetype")
+        file_list = []
     body = get_body(soup,patent_number,url)
     abstract = get_abstract(soup)
     sendTweet(body,file_list,abstract)
