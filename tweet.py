@@ -22,8 +22,7 @@ auth_v2 = tweepy.Client(BEARER_TOKEN, CONSUMER_KEY, CONSUMER_SECRET,ACCESS_TOKEN
 
 def start():
     patent_number = random.randint(1000000, 9999999)
-    # url = f"https://patents.google.com/patent/US{patent_number}/en?oq={patent_number}"
-    url = f"https://patents.google.com/patent/US4539889A/en"
+    url = f"https://patents.google.com/patent/US{patent_number}/en?oq={patent_number}"
     req = requests.get(url)
     soup = BeautifulSoup(req.text, features='lxml')
     meta = soup.find_all('meta',itemprop='full')
