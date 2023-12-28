@@ -21,13 +21,28 @@ api = tweepy.API(auth_v1)
 auth_v2 = tweepy.Client(BEARER_TOKEN, CONSUMER_KEY, CONSUMER_SECRET,ACCESS_TOKEN,ACCESS_TOKEN_SECRET)
 
 def start():
-    patent_number = random.randint(1000000, 9999999)
-    url = f"https://patents.google.com/patent/US{patent_number}/en?oq={patent_number}"
-    req = requests.get(url)
-    soup = BeautifulSoup(req.text, features='lxml')
-    meta = soup.find_all('meta',itemprop='full')
-    ####### start()[0], runner()[1], etc..
-    return patent_number, url, req, soup, meta
+    # patent_number = random.randint(1000000, 9999999)
+    # possible_suffixes = ["", "A", "B1", "B2", "S", "P"]
+    # suffix = random.choice(possible_suffixes)
+    # url = f"https://patents.google.com/patent/US{patent_number}{suffix}/en?oq={patent_number}"
+    # url = f"https://patents.google.com/patent/US{patent_number}/en?oq={patent_number}"
+     while True:
+        patent_number = random.randint(1000000, 9999999)
+        possible_suffixes = ["", "A", "B1", "B2", "S"]
+        suffix = random.choice(possible_suffixes)
+        url = f"https://patents.google.com/patent/US{patent_number}{suffix}/en?oq={patent_number}"
+        req = requests.get(url)
+
+        if req.status_code == 200:
+            req = requests.get(url)
+            soup = BeautifulSoup(req.text, features='lxml')
+            meta = soup.find_all('meta',itemprop='full')
+            ####### start()[0], runner()[1], etc..
+            if suffix != "":
+                patent_number = str(patent_number) + suffix
+            return patent_number, url, req, soup, meta
+        else:
+            print("invalid url: ", url)
 
 
 def get_body(soup, num, url):
